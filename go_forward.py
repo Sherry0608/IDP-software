@@ -6,7 +6,7 @@ from controller import Robot, Motor,DistanceSensor, Camera,GPS, Compass
 
 # create the Robot instance.
 robot = Robot()
-timestep = 300000
+timestep = 64
 # get the time step of the current world.
 timestep = int(robot.getBasicTimeStep())
 
@@ -133,7 +133,7 @@ while robot.step(timestep) != -1:
      #       avoid_object_counter = 0
      #   elif ds_values[0] <1000.0 or ds_values[1]<1000.0:
      #       avoid_obstacle_counter = 100
-    object_detection()
+    
     print(object_detected)
     print(ds_values[0])
     return_initial()

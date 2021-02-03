@@ -1,0 +1,21 @@
+#VRML_OBJ R2021a utf8
+DistanceSensor {
+  translation 0.025 0 0.1
+  rotation 0 1 0 -1.2708
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 1
+        roughness 1
+        metalness 0
+      }
+      geometry DEF DS Box {
+        size 0.01 0.01 0.01
+      }
+    }
+  ]
+  name "ds_left"
+  boundingObject USE DS
+  physics Physics {
+  }
+}

@@ -1,0 +1,160 @@
+#VRML_OBJ R2021a utf8
+Robot {
+  translation 1 0.05 1
+  rotation 0 1 0 -1.571
+  children [
+    SharpGP2Y0A02YK0F {
+      translation 0 0 0.12
+      rotation 0 1 0 -1.5707953071795862
+    }
+    SharpGP2D120 {
+      translation 0 -0.015 0.12
+      rotation 0 1 0 -1.5707953071795862
+    }
+    DistanceSensor {
+      translation 0.04 0 0.1
+      rotation 0 1 0 -1.2708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry DEF DS Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "ds_left"
+      boundingObject USE DS
+      physics Physics {
+      }
+    }
+    DistanceSensor {
+      translation -0.04 0 0.1
+      rotation 0 1 0 -1.8708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry DEF DS Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "ds_right"
+      boundingObject USE DS
+      physics Physics {
+      }
+    }
+    Camera {
+      translation 0 -0.025 0.1
+      children [
+        Shape {
+          appearance PBRAppearance {
+          }
+          geometry DEF CAM Sphere {
+            radius 0.002
+          }
+        }
+      ]
+      boundingObject USE CAM
+      physics Physics {
+      }
+    }
+    Compass {
+    }
+    GPS {
+    }
+    DEF Bearing Solid {
+      translation 0 -0.03 -0.05
+      children [
+        DEF BEARING Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 0
+          }
+          geometry Sphere {
+            radius 0.005
+            subdivision 2
+          }
+        }
+      ]
+      contactMaterial "slippy"
+      boundingObject USE BEARING
+      physics Physics {
+      }
+    }
+    DEF BODY Shape {
+      appearance PBRAppearance {
+        baseColor 0.917647 0.145098 0.145098
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.16 0.05 0.2
+      }
+    }
+    DEF WHEEL1 HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.09 0 0.078
+      }
+      device [
+        RotationalMotor {
+          name "wheel1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.09 0 0.078
+        rotation 0 0 0.9999999999999999 1.5708001190280956
+        children [
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0.305882 0.898039 0.25098
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.0194
+              radius 0.035
+              subdivision 24
+            }
+          }
+        ]
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    DEF WHEEL2 HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.09 0 0.078
+      }
+      device [
+        RotationalMotor {
+          name "wheel2"
+        }
+      ]
+      endPoint Solid {
+        translation -0.09 0 0.078
+        rotation 0 0 1 1.5707999999999998
+        children [
+          USE WHEEL
+        ]
+        name "solid(1)"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+  ]
+  boundingObject USE BODY
+  physics Physics {
+    density -1
+    mass 1
+  }
+  controller "IDP_controller"
+}
