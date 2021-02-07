@@ -112,14 +112,7 @@ def Scan():
             
             wheels[0].setVelocity(left_speed)
             wheels[1].setVelocity(right_speed)
-            
-            #if k < len(object_detected_distance):
-             #   x_coordinate = gps.getValues()[0] - object_detected_distance[k]*np.sin(object_detected_angle[k]*np.pi/180)
-             #   z_coordinate = gps.getValues()[2] + object_detected_distance[k]*np.cos(object_detected_angle[k]*np.pi/180)
-             #   k = k + 1
-             #  #if (round(x_coordinate,4) not in global_coordinate_x):
-              #  global_coordinate_x.append(x_coordinate)
-              #  global_coordinate_z.append(z_coordinate)
+        
                 
             print(object_detected_counter)
             print(object_detected_distance)
